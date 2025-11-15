@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Tarjeta de Cumpleaños para Mi Princesa - 21 Años</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif !important;
+            background: linear-gradient(135deg, #8A2BE2 0%, #FFD700 50%, #8A2BE2 100%);
+            margin: 0;
+            padding: 5px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            box-sizing: border-box;
+        }
+        /* Fondo difuminado de osos */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://img.uhdpaper.com/wallpaper/we-bare-bears-828@0@i-pc-4k.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: -2;
+            filter: blur(2px);
+        }
+        .main-content {
+            position: relative;
+            z-index: 1;
+            transition: filter 0.3s ease;
+            font-family: 'Times New Roman', Times, serif !important;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        .main-content.blurred {
+            filter: blur(5px);
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            width: 100%;
+            max-width: 95vw;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            font-family: 'Times New Roman', Times, serif !important;
+            border: none;
+            margin: 0 auto;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+        .bears {
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+            background: transparent;
+            width: 100%;
+        }
+        .bears img {
+            width: 180px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            clip-path: inset(0 0 0 0);
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        h1 {
+            font-family: 'Times New Roman', Times, serif !important;
+            color: #FFD700;
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            word-wrap: break-word;
+        }
+        .message {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 1.3em;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            color: #fff;
+            flex-grow: 1;
+            word-wrap: break-word;
+        }
+        .signature {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-style: italic;
+            font-size: 1.2em;
+            color: #8A2BE2;
+            margin-top: 10px;
+            word-wrap: break-word;
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .heart {
+            position: absolute;
+            font-size: 2em;
+            color: #FFD700;
+            animation: float 6s infinite linear;
+        }
+        .heart:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; color: #8A2BE2; }
+        .heart:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; color: #FFD700; }
+        .heart:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 2s; color: #8A2BE2; }
+        .heart:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 3s; color: #FFD700; }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        .balloons {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            font-size: 4em;
+            animation: rise 4s infinite linear;
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(180deg); }
+        }
+        .photo-frame {
+            margin: 15px auto;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 3px solid;
+            border-image: linear-gradient(to right, #8A2BE2, #FFD700) 1;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 280px;
+            font-size: 1.1em;
+            color: #fff;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif !important;
+            word-wrap: break-word;
+        }
+        .photo-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInModal 0.3s ease-in;
+        }
+        .modal.active {
+            display: flex;
+        }
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal img {
+            width: 95vw;
+            height: 95vh;
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            transform: scale(0.95);
+            animation: zoomIn 0.5s ease-out;
+            filter: contrast(1.05) brightness(1.02);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: #FFD700;
+            cursor: pointer;
+            background: rgba(138, 43, 226, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 1001;
+            font-family: 'Times New Roman', Times, serif !important;
+        }
+        .close-btn:hover {
+            background: rgba(255, 215, 0, 0.8);
+        }
+        /* Botón para poema con tu voz */
+        .poem-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(138, 43, 226, 0.7);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            color: #FFD700;
+            cursor: pointer;
+            font-size: 1.3em;
+            z-index: 1002;
+            transition: background 0.3s ease;
+        }
+        .poem-btn:hover {
+            background: rgba(255, 215, 0, 0.8);
+        }
+        /* Player audio visible y compacto con controles */
+        #poem-player {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            z-index: 1003;
+            width: 200px;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: rgba(138, 43, 226, 0.5);
+        }
+        #poem-player::-webkit-media-controls-panel {
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+        }
+        #poem-player::-webkit-media-controls-play-button {
+            background-color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio del poema con tu voz (con controles visibles) -->
+    <audio id="poem-player" preload="auto" controls>
+        <source src="https://www.dropbox.com/scl/fi/h7dw00d3wigx1h68mtfbg/Vocaroo-14IVXkZ0ES6C-1.mp3?rlkey=ikfsqhlyrfeyf48dy00ehvp9j&st=hn9luo9f&dl=1" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+    <button class="poem-btn" onclick="togglePoem()">💌</button> <!-- Botón corazón para descubrir el poema -->
+    <div class="hearts">
+        <div class="heart">💜</div>
+        <div class="heart">💛</div>
+        <div class="heart">💜</div>
+        <div class="heart">💛</div>
+    </div>
+    <div class="balloons">🎈🎉</div>
+    <div class="main-content" id="main-content">
+        <div class="card">
+            <div class="bears">
+                <img src="https://i.ibb.co/N2MnFvg0/IMG-20251114-171339.jpg" alt="Osos Escandalosos celebrando cumpleaños">
+            </div>
+            <h1>¡Feliz Cumpleaños, mi princesa!</h1>
+            <div class="message">
+                <p>Marlincita, si de fortaleza hablamos debe de ir en grande tu nombre, porque siempre has superado tus miedos, has luchado y has creído en nuestro amor tanto como yo siempre lo he deseado.</p>
+                <p>Te amo porque eres valiente, te amo porque eres todo lo que sueño, lo que me complementa y lo que necesito para ser feliz</p>
+                <p>¡Feliz cumpleaños, mi vida, gracias por todo lo que me das, gracias infinitamente porque sin querer serlo eres lo más especial que tengo en mi vida</p>
+            </div>
+            <div class="photo-frame" onclick="openPhotoModal()">
+                ¡Toca con tu dedito para ver nuestro momento especial! 💜💛
+            </div>
+            <div class="signature">
+                El hombre que te ama,<br>
+                Leymar
+            </div>
+        </div>
+    </div><div id="photo-modal" class="modal" onclick="closePhotoModal(event)">
+    <span class="close-btn" onclick="closePhotoModal(event)">✕</span>
+    <img src="https://i.ibb.co/v62kzsFk/IMG-20251007-192652.jpg" alt="Nuestra foto especial">
+</div>
+
+<script>
+    // Botón para poema con player visible
+    let isPlaying = false;
+    function togglePoem() {
+        const player = document.getElementById('poem-player');
+        const btn = document.querySelector('.poem-btn');
+        if (isPlaying) {
+            player.style.display = 'none';
+            isPlaying = false;
+            btn.innerHTML = '💌';
+            player.pause();
+        } else {
+            player.style.display = 'block';
+            isPlaying = true;
+            btn.innerHTML = '🔊';
+            player.play(); // Inicia reproducción al mostrar
+        }
+    }
+
+    function openPhotoModal() {
+        const modal = document.getElementById('photo-modal');
+        const mainContent = document.getElementById('main-content');
+        modal.classList.add('active');
+        mainContent.classList.add('blurred');
+        modal.querySelector('img').onclick = function(e) { e.stopPropagation(); };
+    }
+
+    function closePhotoModal(event) {
+        const modal = document.getElementById('photo-modal');
+        const mainContent = document.getElementById('main-content');
+        modal.classList.remove('active');
+        mainContent.classList.remove('blurred');
+    }
+</script>
+
+</body>
+</html>
